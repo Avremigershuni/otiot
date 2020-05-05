@@ -3,7 +3,7 @@ import styled from "styled-components";
 // import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { AiOutlinePicture } from "react-icons/ai";
 import Player from "./SoundPlayer";
-import { buttonA } from "./globalCss";
+import { buttonB } from "./globalCss";
 
 const Window = ({ content }) => {
   let [isSwitchButtonClicked, setSwitchButtonClicked] = useState(false);
@@ -105,5 +105,5 @@ const Footer = styled.div`
 `;
 
 const Button = styled.div`
-  ${buttonA}
+  ${buttonB}
 `;

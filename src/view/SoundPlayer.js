@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AiTwotoneSound, AiOutlineSound } from "react-icons/ai";
-import { buttonA } from "./globalCss";
+import { buttonB } from "./globalCss";
 
 const useAudio = url => {
   // console.log({ hook_url: url });
@@ -50,5 +50,5 @@ const Player = ({ url }) => {
 export default Player;
 
 const Button = styled.div`
-  ${buttonA}
+  ${buttonB}
 `;

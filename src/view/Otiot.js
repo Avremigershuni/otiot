@@ -4,10 +4,13 @@ import {
   FaRegArrowAltCircleLeft,
   FaRegArrowAltCircleRight,
 } from "react-icons/fa";
-import { GiImperialCrown } from "react-icons/gi";
+import { BsStar } from "react-icons/bs";
 import backCards from "./backList";
 import Window from "./Window";
 import TopBar from "./TopBar";
+import PopUp from "./PopUp";
+
+
 import { buttonA } from "./globalCss";
 const Otiot = () => {
   let [object, setObject] = useState({});
@@ -22,82 +25,95 @@ const Otiot = () => {
     backCards[6],
     backCards[7],
   ]);
-  let [clicked, setClicked] = useState([]);
-  // let minIndex = 0;
-  // let maxIndex = 7;
+  let [clicked, setClicked] = useState({});
+  let [indexes, setIndexes] = useState({
+    min: 0,
+    max: 8,
+  });
+  let [level, setLevel]=useState("")
 
-  // const newListEditor = (arr, arg)=>{
-  //   minIndex += 8;
-  //   maxIndex += 8;
-  //  let result = arr.filter((item)=>item.id >= minIndex && item.id <= maxIndex )
-  // //  console.log("result:" + result);
-  //  setNewList(result);
-  // //  console.log(newList);
-  // console.log(minIndex);
-  // console.log(maxIndex);
-  //  return result;
-  // };
-
-  const newListEditor = (arr, arg) => {
-    let minIndex = 0;
-    let maxIndex = 7;
-    if (arg === "plus") {
-      minIndex = minIndex + 8;
-      maxIndex = minIndex + 8;
-      if (minIndex > 24 && maxIndex > 32) {
-        minIndex = 0;
-        maxIndex = 7;
-      }
-      console.log("plus clicked", minIndex, maxIndex);
-    } else if (arg === "minus") {
-      minIndex -= 8;
-      maxIndex -= 8;
-      if (minIndex < 0 && maxIndex < 7) {
-        minIndex = 23;
-        maxIndex = 31;
-      }
-      console.log("minus clicked", minIndex, maxIndex);
-    } else {
-      minIndex = 0;
-      maxIndex = 7;
+  const rewardChecker = (ot, clicked, setClicked) => {
+    setClicked({ ...clicked, [ot.id]: "clicked" });
+    console.log("clicked:", clicked);
+    let length = Object.keys(clicked).length;
+    if (!clicked[ot.id]) {
+      // length++
+      setClicked({ ...clicked, [ot.id]: "clicked", length });
     }
-    let result = arr.filter(
-      (item) => item.id >= minIndex && item.id <= maxIndex
-    );
-    //  console.log("result:" + result);
-    setNewList(result);
-    //  console.log(newList);
-    console.log("min" + minIndex);
-    console.log("max" + maxIndex);
-    return result;
+    console.log("length:", length);
   };
-const vbvb = (arg)=>{
-  let a = 0;
-  let b = 7;
-  if(arg === "plus"){
-    a = a + 8 ;
-    b +=8;
-    console.log(a,b);
+
+  const levelChecker = ()=>{
+    if(clicked.length >= 8 && clicked.length < 16){
+      setLevel("ראשון")
+    }
   }
-}
+  const newListEditor = (arr, arg, index, setIndex, setNewList) => {
+    let { min, max } = index;
+    if (index.min === 0 && arg === "minus") return;
+    if (index.max === arr.length && arg === "plus") return;
+
+    if (arg === "plus") {
+      setIndex({
+        min: (min += 8),
+        max: (max += 8),
+      });
+
+      let plusFiltered = arr.filter((n) => {
+        return n.id >= index.min + 8 && n.id < index.max + 8;
+      });
+
+      setNewList(plusFiltered);
+    } else {
+      setIndex({
+        min: (min -= 8),
+        max: (max -= 8),
+      });
+
+      let minusFiltered = arr.filter((n) => {
+        return n.id >= index.min - 8 && n.id < index.max - 8;
+      });
+
+      setNewList(minusFiltered);
+    }
+  };
 
   return (
     <Wrapper>
       <TopBar />
       <Rewards>
+      <PopUp content={level}/>
         {clicked.length >= 8 && clicked.length < 16 ? (
-          <h1>
-            <GiImperialCrown />
-          </h1>
+          // <RewardsArea>
+          //   <BsStar />
+          // </RewardsArea>
+          <PopUp content={level}/>
         ) : null}
         {clicked.length >= 16 && clicked.length < 24 ? (
           <>
-            <h1>
-              <GiImperialCrown />
-            </h1>
-            <h1>
-              <GiImperialCrown />
-            </h1>
+            <RewardsArea>
+              <BsStar />
+              <BsStar />
+            </RewardsArea>
+          </>
+        ) : null}
+        {clicked.length >= 24 && clicked.length < 32 ? (
+          <>
+            <RewardsArea>
+              <BsStar />
+              <BsStar />
+              <BsStar />
+            </RewardsArea>
+          </>
+        ) : null}
+        {clicked.length === 32 ? (
+          <>
+            <RewardsArea>
+              <BsStar />
+              <BsStar />
+              <BsStar />
+              <BsStar />
+            </RewardsArea>
           </>
         ) : null}
       </Rewards>
@@ -110,9 +126,9 @@ const vbvb = (arg)=>{
                 key={obj.id}
                 onClick={() => {
                   setObject(obj);
-                  setClicked(() => [...clicked, obj.letter]);
-                  // setClickedLetters(obj);
-                  // console.log(clickedLetters);
+                  rewardChecker(object, clicked, setClicked);
+                  levelChecker(clicked,setLevel)
+                  // setClicked(() => [...clicked, obj.letter]);
                 }}
               >
                 <h3>{obj.letter}</h3>
@@ -122,16 +138,26 @@ const vbvb = (arg)=>{
           <ArrowsBox>
             <Button
               onClick={() => {
-                newListEditor(backCards, "plus");
-                vbvb( "plus");
+                newListEditor(
+                  backCards,
+                  "plus",
+                  indexes,
+                  setIndexes,
+                  setNewList
+                );
               }}
             >
               <FaRegArrowAltCircleLeft />
             </Button>
             <Button
               onClick={() => {
-                newListEditor(backCards, "minus");
-                // avremi(backCards, "minus");
+                newListEditor(
+                  backCards,
+                  "minus",
+                  indexes,
+                  setIndexes,
+                  setNewList
+                );
               }}
             >
               <FaRegArrowAltCircleRight />
@@ -234,4 +260,8 @@ const ArrowsBox = styled.div`
 
 const Button = styled.div`
   ${buttonA}
+`;
+
+const RewardsArea = styled.h1`
+  font-size: 50px;
 `;
