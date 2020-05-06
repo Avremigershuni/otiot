@@ -4,7 +4,6 @@ import {
   FaRegArrowAltCircleLeft,
   FaRegArrowAltCircleRight,
 } from "react-icons/fa";
-import { BsStar } from "react-icons/bs";
 import backCards from "./backList";
 import Window from "./Window";
 import TopBar from "./TopBar";
@@ -14,7 +13,6 @@ import PopUp from "./PopUp";
 import { buttonA } from "./globalCss";
 const Otiot = () => {
   let [object, setObject] = useState({});
-  // let [clickedLetters, setClickedLetters] = useState([]);
   let [newList, setNewList] = useState([
     backCards[0],
     backCards[1],
@@ -44,8 +42,17 @@ const Otiot = () => {
   };
 
   const levelChecker = ()=>{
-    if(clicked.length >= 8 && clicked.length < 16){
+    if(clicked.length >=7 && clicked.length < 16){
       setLevel("ראשון")
+    }
+    if(clicked.length >=15 && clicked.length < 24){
+      setLevel("שני")
+    }
+    if(clicked.length >=23 && clicked.length < 32){
+      setLevel("שלישי")
+    }
+    if(clicked.length >=31 ){
+      setLevel("רביעי")
     }
   }
   const newListEditor = (arr, arg, index, setIndex, setNewList) => {
@@ -84,37 +91,16 @@ const Otiot = () => {
       <Rewards>
       <PopUp content={level}/>
         {clicked.length >= 8 && clicked.length < 16 ? (
-          // <RewardsArea>
-          //   <BsStar />
-          // </RewardsArea>
           <PopUp content={level}/>
         ) : null}
         {clicked.length >= 16 && clicked.length < 24 ? (
-          <>
-            <RewardsArea>
-              <BsStar />
-              <BsStar />
-            </RewardsArea>
-          </>
+          <PopUp content={level}/>
         ) : null}
         {clicked.length >= 24 && clicked.length < 32 ? (
-          <>
-            <RewardsArea>
-              <BsStar />
-              <BsStar />
-              <BsStar />
-            </RewardsArea>
-          </>
+          <PopUp content={level}/>
         ) : null}
         {clicked.length === 32 ? (
-          <>
-            <RewardsArea>
-              <BsStar />
-              <BsStar />
-              <BsStar />
-              <BsStar />
-            </RewardsArea>
-          </>
+          <PopUp content={level}/>
         ) : null}
       </Rewards>
       <ContentBox>
@@ -206,7 +192,8 @@ const Rewards = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 80px;
+  height: 10px;
+  margin:0;
   border: 2px solid tan;
 `;
 
@@ -238,10 +225,8 @@ const LettersBox = styled.div`
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: center;
-  /* align-items: center; */
   height: 390px;
   width: 320px;
-  /* border: 2.5px red solid; */
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
 `;
@@ -262,6 +247,4 @@ const Button = styled.div`
   ${buttonA}
 `;
 
-const RewardsArea = styled.h1`
-  font-size: 50px;
-`;
+

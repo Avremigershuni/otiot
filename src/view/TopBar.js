@@ -14,6 +14,6 @@ const Tb = styled.div`
   height: 100px;
   width: 100%;
   border: 2px solid rebeccapurple;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   box-sizing: border-box;
 `;
