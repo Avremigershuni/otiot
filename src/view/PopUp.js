@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { AiOutlineClose } from "react-icons/ai";
+
 
 const PopUp = ({ content }) => {
   let [popUpOpen, setPopUpOpen] = useState(true);
@@ -8,26 +8,16 @@ const PopUp = ({ content }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setPopUpOpen(false);
-    }, 3500);
+    }, 2500);
     return () => clearTimeout(timer);
   }, [setPopUpOpen]);
   return (
     <>
       {popUpOpen ? (
         <PopUpWindow>
-          {/* <ButtonBox>
-          <ClosingButton
-            onClick={() => {
-              setPopUpOpen(!popUpOpen);
-            }}
-          >
-            <AiOutlineClose />
-          </ClosingButton>
-          </ButtonBox> */}
-         
           <TextArea>
-            <h1> !!! כל הכבוד </h1>
-            <p>{content} סיימת את השלב ה </p>
+            <H1> !!! כל הכבוד </H1>
+            <Par> סיימת את השלב ה{content}</Par>
           </TextArea>
         </PopUpWindow>
       ) : null}
@@ -39,37 +29,17 @@ export default PopUp;
 const PopUpWindow = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   justify-content: flex-start;
   height: 350px;
   width: 350px;
-  padding-top:10px;
+  padding-top: 10px;
   background-color: pink;
-  border-radius:25px;
+  border-radius: 25px;
   position: relative;
-  top:200px;
+  top: 240px;
   z-index: 999;
-  box-shadow: 4px 1px 7px -3px rgba(0,0,0,0.47);
-`;
-
-// const ButtonBox = styled.div`
-//  display: flex;
-//   flex-direction: row;
-//   justify-content: flex-start;
-//   align-items: center;
-//   height: 30px;
-//   width:100%;
-// `;
-
-const ClosingButton = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size:18px;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
+  box-shadow: 4px 1px 7px -3px rgba(0, 0, 0, 0.47);
 `;
 
 const TextArea = styled.div`
@@ -77,6 +47,17 @@ const TextArea = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width: 100%;
   height: 310px;
+  font-family: "Secular One", sans-serif;
+`;
+
+const H1 = styled.h1`
+  font-size: 45px;
+  text-shadow: 2px 2px 5px grey;
+`;
+
+const Par = styled.p`
+  font-size: 25px;
+  text-shadow: 2px 2px 5px grey;
 `;

@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const TopBar = () => {
-  return <Tb />;
+  return <Tb>
+
+    <H1>האותיות - שלי</H1>
+  </Tb>;
 };
 export default TopBar;
 
@@ -13,7 +16,13 @@ const Tb = styled.div`
   align-items: center;
   height: 100px;
   width: 100%;
-  border: 2px solid rebeccapurple;
-  /* margin-bottom: 15px; */
+  background-color:slateblue;
+  font-family: 'Secular One', sans-serif;
   box-sizing: border-box;
+`;
+
+const H1 = styled.h1`
+  font-size: 45px;
+  margin: 0;
+  color:black;
 `;

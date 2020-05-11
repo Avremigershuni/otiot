@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {
-  FaRegArrowAltCircleLeft,
-  FaRegArrowAltCircleRight,
-} from "react-icons/fa";
-import backCards from "./backList";
+  TiArrowLeftOutline,
+  TiArrowRightOutline,
+} from "react-icons/ti";
+// import useWindowSize from 'react-use/lib/useWindowSize'
+import backCards from "../data/backList";
 import Window from "./Window";
 import TopBar from "./TopBar";
 import PopUp from "./PopUp";
-
-
+import ConfettiShow from "./Confetti";
+import Footer from "./Footer";
 import { buttonA } from "./globalCss";
+
 const Otiot = () => {
+  // const { width, height } = useWindowSize()
   let [object, setObject] = useState({});
   let [newList, setNewList] = useState([
     backCards[0],
@@ -29,7 +32,8 @@ const Otiot = () => {
     max: 8,
   });
   let [level, setLevel]=useState("")
-
+  let [isLetterClicked, setIsLetterClicked]=useState(false)
+  
   const rewardChecker = (ot, clicked, setClicked) => {
     setClicked({ ...clicked, [ot.id]: "clicked" });
     console.log("clicked:", clicked);
@@ -42,6 +46,7 @@ const Otiot = () => {
   };
 
   const levelChecker = ()=>{
+    // console.log(width)
     if(clicked.length >=7 && clicked.length < 16){
       setLevel("ראשון")
     }
@@ -56,21 +61,25 @@ const Otiot = () => {
     }
   }
   const newListEditor = (arr, arg, index, setIndex, setNewList) => {
+    // console.log(width, 2)
     let { min, max } = index;
     if (index.min === 0 && arg === "minus") return;
     if (index.max === arr.length && arg === "plus") return;
 
     if (arg === "plus") {
+      if(clicked.length === 8 || clicked.length === 16 || clicked.length === 24){
+
+      
       setIndex({
         min: (min += 8),
         max: (max += 8),
       });
-
       let plusFiltered = arr.filter((n) => {
         return n.id >= index.min + 8 && n.id < index.max + 8;
       });
-
+      
       setNewList(plusFiltered);
+    }
     } else {
       setIndex({
         min: (min -= 8),
@@ -85,11 +94,12 @@ const Otiot = () => {
     }
   };
 
+
   return (
     <Wrapper>
       <TopBar />
       <Rewards>
-      <PopUp content={level}/>
+      {isLetterClicked === false ? <H1>אנא בחר/י אות</H1> : null}
         {clicked.length >= 8 && clicked.length < 16 ? (
           <PopUp content={level}/>
         ) : null}
@@ -100,9 +110,13 @@ const Otiot = () => {
           <PopUp content={level}/>
         ) : null}
         {clicked.length === 32 ? (
+          <>
           <PopUp content={level}/>
+          <ConfettiShow/>
+          </>
         ) : null}
       </Rewards>
+      
       <ContentBox>
         <Window content={object} />
         <CharsWrapper>
@@ -114,7 +128,7 @@ const Otiot = () => {
                   setObject(obj);
                   rewardChecker(object, clicked, setClicked);
                   levelChecker(clicked,setLevel)
-                  // setClicked(() => [...clicked, obj.letter]);
+                  setIsLetterClicked(true);
                 }}
               >
                 <h3>{obj.letter}</h3>
@@ -133,7 +147,7 @@ const Otiot = () => {
                 );
               }}
             >
-              <FaRegArrowAltCircleLeft />
+              <TiArrowLeftOutline />
             </Button>
             <Button
               onClick={() => {
@@ -146,11 +160,12 @@ const Otiot = () => {
                 );
               }}
             >
-              <FaRegArrowAltCircleRight />
+              <TiArrowRightOutline />
             </Button>
           </ArrowsBox>
         </CharsWrapper>
       </ContentBox>
+      <Footer/>
     </Wrapper>
   );
 };
@@ -159,11 +174,13 @@ export default Otiot;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
-  background-color: grey;
+  background-color: lightslategrey;
   height: 100vh;
   width: 100vw;
+  padding:0;
+  margin:0;
 `;
 
 const Div = styled.div`
@@ -171,12 +188,13 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 55px;
   height: 70px;
   width: 70px;
   margin: 10px;
-  border-radius: 50%;
-  border: solid rebeccapurple 6px;
+  border-radius: 25px;
+  font-family: 'Secular One', sans-serif;
+  font-size: 55px;
+  border: double rebeccapurple 4.5px;
   background-color: turquoise;
   cursor: pointer;
   transition: 100ms;
@@ -192,9 +210,16 @@ const Rewards = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 10px;
-  margin:0;
-  border: 2px solid tan;
+  height: 1px;
+  margin-top:10px;
+`;
+
+const H1 = styled.h1`
+font-family: 'Secular One', sans-serif;
+  font-size: 30px;
+  margin: 0;
+  color:black;
+  justify-self:center;
 `;
 
 const ContentBox = styled.div`
@@ -203,8 +228,12 @@ const ContentBox = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 80vw;
-  border: 2px solid black;
+  margin-right:10vw;
+  margin-left:10vw;
+  margin-bottom:90px;
+  /* border: 2px solid black; */
   box-sizing: border-box;
+  
 `;
 
 const CharsWrapper = styled.div`
@@ -216,8 +245,9 @@ const CharsWrapper = styled.div`
   width: 320px;
   padding: 0;
   margin-left: 25px;
-  border: 2px blue solid;
+  border: 4.5px rebeccapurple double;
   border-radius: 25px;
+  background-color:burlywood;
 `;
 
 const LettersBox = styled.div`
@@ -225,7 +255,7 @@ const LettersBox = styled.div`
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: center;
-  height: 390px;
+  height: 410px;
   width: 320px;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
@@ -236,9 +266,10 @@ const ArrowsBox = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 100px;
-  width: 320px;
-  border: 1.5px solid black;
+  height: 80px;
+  height: 80px;
+  width: 100%;
+  border-top: 1.5px rebeccapurple dashed;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
 `;

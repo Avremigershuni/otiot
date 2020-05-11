@@ -13,7 +13,7 @@ const Window = ({ content }) => {
         {isSwitchButtonClicked === false ? (
           <h1>{content.letter}</h1>
         ) : (
-          <img src={content.img} alt="charPic" />
+          <Image src={content.img} alt="charPic" />
         )}
       </CardCenter>
       <TextArea>
@@ -44,20 +44,10 @@ const MainCard = styled.div`
   /* align-items: center; */
   height: 490px;
   width: 320px;
-  border: 2.5px red solid;
+  border: 4.5px rebeccapurple double;
   border-radius: 25px;
-  background-color: goldenrod;
+  background-color: burlywood;
 `;
-
-// const ArrowLeft = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   height: 250px;
-//   width: 50px;
-//   border: 1.5px pink solid;
-// `;
 
 const CardCenter = styled.div`
   display: flex;
@@ -66,8 +56,17 @@ const CardCenter = styled.div`
   align-items: center;
   height: 345px;
   width: 100%;
-  font-size: 75px;
-  border: 1.5px blue solid;
+  font-size: 95px;
+  font-family: "Secular One", sans-serif;
+  /* border-bottom: 1.5px blue solid; */
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+`;
+
+const Image = styled.img`
+  display: block;
+  width: 320px;
+  height: 460px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 `;
@@ -79,18 +78,10 @@ const TextArea = styled.div`
   align-items: center;
   height: 60px;
   width: 100%;
-  border: 1.5px black solid;
+  font-family: "Secular One", sans-serif;
+  /* border: 1.5px black solid; */
 `;
 
-// const ArrowRight = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   height: 250px;
-//   width: 50px;
-//   border: 1.5px pink solid;
-// `;
 
 const Footer = styled.div`
   display: flex;
@@ -99,7 +90,7 @@ const Footer = styled.div`
   align-items: center;
   height: 80px;
   width: 100%;
-  border: 1.5px black solid;
+  border-top: 1.5px rebeccapurple dashed;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
 `;
