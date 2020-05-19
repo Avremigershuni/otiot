@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  TiArrowLeftOutline,
-  TiArrowRightOutline,
-} from "react-icons/ti";
-// import useWindowSize from 'react-use/lib/useWindowSize'
+import { TiArrowLeftOutline, TiArrowRightOutline } from "react-icons/ti";
+// import {BrowserView, MobileView,isBrowser, isMobile} from "react-device-detect";
 import backCards from "../data/backList";
 import Window from "./Window";
 import TopBar from "./TopBar";
@@ -14,7 +11,6 @@ import Footer from "./Footer";
 import { buttonA } from "./globalCss";
 
 const Otiot = () => {
-  // const { width, height } = useWindowSize()
   let [object, setObject] = useState({});
   let [newList, setNewList] = useState([
     backCards[0],
@@ -31,35 +27,36 @@ const Otiot = () => {
     min: 0,
     max: 8,
   });
-  let [level, setLevel]=useState("")
-  let [isLetterClicked, setIsLetterClicked]=useState(false)
+  let [level, setLevel] = useState("");
+  let [isAnyLetterClicked, setIsAnyLetterClicked] = useState(false);
   
+
   const rewardChecker = (ot, clicked, setClicked) => {
     setClicked({ ...clicked, [ot.id]: "clicked" });
-    console.log("clicked:", clicked);
+    // console.log("clicked:", clicked);
     let length = Object.keys(clicked).length;
     if (!clicked[ot.id]) {
       // length++
       setClicked({ ...clicked, [ot.id]: "clicked", length });
     }
-    console.log("length:", length);
+    // console.log("length:", length);
   };
 
-  const levelChecker = ()=>{
+  const levelChecker = () => {
     // console.log(width)
-    if(clicked.length >=7 && clicked.length < 16){
-      setLevel("ראשון")
+    if (clicked.length >= 7 && clicked.length < 16) {
+      setLevel("ראשון");
     }
-    if(clicked.length >=15 && clicked.length < 24){
-      setLevel("שני")
+    if (clicked.length >= 15 && clicked.length < 24) {
+      setLevel("שני");
     }
-    if(clicked.length >=23 && clicked.length < 32){
-      setLevel("שלישי")
+    if (clicked.length >= 23 && clicked.length < 32) {
+      setLevel("שלישי");
     }
-    if(clicked.length >=31 ){
-      setLevel("רביעי")
+    if (clicked.length >= 31) {
+      setLevel("רביעי");
     }
-  }
+  };
   const newListEditor = (arr, arg, index, setIndex, setNewList) => {
     // console.log(width, 2)
     let { min, max } = index;
@@ -67,9 +64,11 @@ const Otiot = () => {
     if (index.max === arr.length && arg === "plus") return;
 
     if (arg === "plus") {
-      if(clicked.length === 8 || clicked.length === 16 || clicked.length === 24){
-
-      
+      // if (
+      //   clicked.length === 8 ||
+      //   clicked.length === 16 ||
+      //   clicked.length === 24
+      // ) {
       setIndex({
         min: (min += 8),
         max: (max += 8),
@@ -77,9 +76,9 @@ const Otiot = () => {
       let plusFiltered = arr.filter((n) => {
         return n.id >= index.min + 8 && n.id < index.max + 8;
       });
-      
+
       setNewList(plusFiltered);
-    }
+      // }
     } else {
       setIndex({
         min: (min -= 8),
@@ -94,45 +93,49 @@ const Otiot = () => {
     }
   };
 
-
   return (
     <Wrapper>
       <TopBar />
       <Rewards>
-      {isLetterClicked === false ? <H1>אנא בחר/י אות</H1> : null}
+        {isAnyLetterClicked === false ? <H1>אנא בחר/י אות</H1> : null}
         {clicked.length >= 8 && clicked.length < 16 ? (
-          <PopUp content={level}/>
+          <PopUp content={level} />
         ) : null}
         {clicked.length >= 16 && clicked.length < 24 ? (
-          <PopUp content={level}/>
+          <PopUp content={level} />
         ) : null}
         {clicked.length >= 24 && clicked.length < 32 ? (
-          <PopUp content={level}/>
+          <PopUp content={level} />
         ) : null}
         {clicked.length === 32 ? (
           <>
-          <PopUp content={level}/>
-          <ConfettiShow/>
+            <PopUp content={level} />
+            <ConfettiShow />
           </>
         ) : null}
       </Rewards>
-      
+
       <ContentBox>
         <Window content={object} />
+        <div>{clicked.length}/32</div>
         <CharsWrapper>
           <LettersBox>
             {newList.map((obj) => (
-              <Div
+              // <ThemeProvider theme={theme}>
+              <Div //className={obj.isClicked ? "clickedDiv": ""}
                 key={obj.id}
                 onClick={() => {
                   setObject(obj);
                   rewardChecker(object, clicked, setClicked);
-                  levelChecker(clicked,setLevel)
-                  setIsLetterClicked(true);
+                  levelChecker(clicked, setLevel);
+                  setIsAnyLetterClicked(true);
+                  // obj =  {...obj, isClicked:"clicked"}
+                  // console.log(obj)
                 }}
               >
                 <h3>{obj.letter}</h3>
               </Div>
+              // </ThemeProvider>
             ))}
           </LettersBox>
           <ArrowsBox>
@@ -165,7 +168,7 @@ const Otiot = () => {
           </ArrowsBox>
         </CharsWrapper>
       </ContentBox>
-      <Footer/>
+      <Footer />
     </Wrapper>
   );
 };
@@ -179,8 +182,8 @@ const Wrapper = styled.div`
   background-color: lightslategrey;
   height: 100vh;
   width: 100vw;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 `;
 
 const Div = styled.div`
@@ -192,16 +195,27 @@ const Div = styled.div`
   width: 70px;
   margin: 10px;
   border-radius: 25px;
-  font-family: 'Secular One', sans-serif;
+  font-family: "Secular One", sans-serif;
   font-size: 55px;
   border: double rebeccapurple 4.5px;
   background-color: turquoise;
+  /* background: ${(props) => props.theme.bg}; */
   cursor: pointer;
   transition: 100ms;
   &:hover {
     box-shadow: 10px 10px 10px rgba(76, 129, 172, 0.836);
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
+  &:active {
+    transform: scale(0.9);
+  }
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height:  40px;
+    width: 40px;
+    border-radius: 15px;
+    font-size:30px;
+    flex-basis:15%;
+  } */
 `;
 
 const Rewards = styled.div`
@@ -211,15 +225,15 @@ const Rewards = styled.div`
   align-items: center;
   width: 100vw;
   height: 1px;
-  margin-top:10px;
+  margin-top: 10px;
 `;
 
 const H1 = styled.h1`
-font-family: 'Secular One', sans-serif;
+  font-family: "Secular One", sans-serif;
   font-size: 30px;
   margin: 0;
-  color:black;
-  justify-self:center;
+  color: black;
+  justify-self: center;
 `;
 
 const ContentBox = styled.div`
@@ -228,12 +242,15 @@ const ContentBox = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 80vw;
-  margin-right:10vw;
-  margin-left:10vw;
-  margin-bottom:90px;
+  margin-right: 10vw;
+  margin-left: 10vw;
+  margin-bottom: 90px;
   /* border: 2px solid black; */
   box-sizing: border-box;
-  
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    flex-direction: column;
+    width: 350px;
+  } */
 `;
 
 const CharsWrapper = styled.div`
@@ -243,11 +260,16 @@ const CharsWrapper = styled.div`
   align-items: center;
   height: 490px;
   width: 320px;
-  padding: 0;
+  /* padding-top: 20px; */
   margin-left: 25px;
   border: 4.5px rebeccapurple double;
   border-radius: 25px;
-  background-color:burlywood;
+  background-color: burlywood;
+  box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47);
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 350px;
+    height:220px;
+  } */
 `;
 
 const LettersBox = styled.div`
@@ -277,5 +299,3 @@ const ArrowsBox = styled.div`
 const Button = styled.div`
   ${buttonA}
 `;
-
-

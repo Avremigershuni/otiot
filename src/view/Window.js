@@ -11,13 +11,13 @@ const Window = ({ content }) => {
     <MainCard>
       <CardCenter>
         {isSwitchButtonClicked === false ? (
-          <h1>{content.letter}</h1>
+          <H1>{content.letter}</H1>
         ) : (
-          <Image src={content.img} alt="charPic" />
+          <Image src={content.img} alt="" />
         )}
       </CardCenter>
       <TextArea>
-        {isSwitchButtonClicked === true ? <h1>{content.picTitle}</h1> : null}
+        {isSwitchButtonClicked === true ? <H1>{content.picTitle}</H1> : null}
       </TextArea>
       <Footer>
         <Button
@@ -25,7 +25,7 @@ const Window = ({ content }) => {
             setSwitchButtonClicked(!isSwitchButtonClicked);
           }}
         >
-          <AiOutlinePicture />
+         {isSwitchButtonClicked === false ? (<AiOutlinePicture />) : (<H1>א</H1>)} 
         </Button>
         <Player url={content.audio} />
       </Footer>
@@ -47,6 +47,10 @@ const MainCard = styled.div`
   border: 4.5px rebeccapurple double;
   border-radius: 25px;
   background-color: burlywood;
+  box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47);
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 140px;
+  } */
 `;
 
 const CardCenter = styled.div`
@@ -55,20 +59,27 @@ const CardCenter = styled.div`
   justify-content: center;
   align-items: center;
   height: 345px;
-  width: 100%;
+  width: 319.5px;
   font-size: 95px;
   font-family: "Secular One", sans-serif;
   /* border-bottom: 1.5px blue solid; */
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 140px;
+    font-size:55px;
+  } */
 `;
 
 const Image = styled.img`
   display: block;
   width: 320px;
   height: 460px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 140px;
+  } */
 `;
 
 const TextArea = styled.div`
@@ -97,4 +108,8 @@ const Footer = styled.div`
 
 const Button = styled.div`
   ${buttonB}
+`;
+
+const H1 = styled.h1`
+ font-family: 'Secular One', sans-serif;
 `;

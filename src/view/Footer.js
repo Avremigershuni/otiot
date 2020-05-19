@@ -28,7 +28,7 @@ export default Footer;
 const Ftr = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   height: 70px;
   width: 100%;
@@ -43,16 +43,19 @@ const TextArea = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  flex-basis:50%;
   height: 40px;
   padding:0;
   color:white;
-  margin-left:15%;
+  border:2px black solid;
+  /* margin-left:15%; */
 `;
 
 const H4 = styled.h4`
   font-size: 15px;
   margin: 0;
   color:#555;
+  margin-left:250px;
 `;
 
 const Links = styled.div`
@@ -60,7 +63,8 @@ const Links = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right:20%;
+  flex-basis:50%;
+  /* margin-right:20%; */
 `;
 
 const A = styled.a`

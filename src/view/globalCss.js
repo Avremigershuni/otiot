@@ -11,6 +11,14 @@ color:blue;
 border-radius: 50%;
 background-color:turquoise;
 cursor: pointer;
+transition: 100ms;
+  &:active {
+    transform: scale(0.9);
+  } @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 35px;
+    height:35px;
+    font-size:25px;
+  }
 `;
 
 
@@ -27,5 +35,9 @@ border-radius: 50%;
 color:blue;
 background-color:turquoise;
 cursor: pointer;
+transition: 100ms;
+  &:active {
+    transform: scale(0.9);
+  }
 `;
 export { buttonA, buttonB};
