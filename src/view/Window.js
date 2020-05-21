@@ -8,6 +8,8 @@ import { buttonB } from "./globalCss";
 const Window = ({ content }) => {
   let [isSwitchButtonClicked, setSwitchButtonClicked] = useState(false);
   return (
+    <Border>
+
     <MainCard>
       <CardCenter>
         {isSwitchButtonClicked === false ? (
@@ -30,26 +32,39 @@ const Window = ({ content }) => {
         <Player url={content.audio} />
       </Footer>
     </MainCard>
+    </Border>
   );
 };
 export default Window;
 
+const Border = styled.div`
+ display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  border:2.5px dashed white;
+  padding:20px;
+  border-radius:45px;
+  margin-right:45px;
+  transform:skew(-5deg);
+`;
+
 const MainCard = styled.div`
-  /* grid-column: 2/4;
-  grid-row: 2/4; */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
   /* align-items: center; */
-  height: 490px;
-  width: 320px;
-  border: 4.5px rebeccapurple double;
-  border-radius: 25px;
-  background-color: burlywood;
+  height: 620px;
+  width: 420px;
+  /* border: 4.5px rebeccapurple double; */
+  border-radius: 40px;
+  background-color: white;
+  /* transform:skew(-0.7deg); */
   box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47);
   /* @media only screen and (min-width: 0px) and (max-width: 370px) {
-    width: 140px;
+    width: 350px;
+    height:220px;
   } */
 `;
 
@@ -58,14 +73,15 @@ const CardCenter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 345px;
-  width: 319.5px;
+  height: 400px;
+  width: 100%;
   font-size: 95px;
   font-family: "Secular One", sans-serif;
   /* border-bottom: 1.5px blue solid; */
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    flex-direction: row;
     width: 140px;
     font-size:55px;
   } */
@@ -73,8 +89,8 @@ const CardCenter = styled.div`
 
 const Image = styled.img`
   display: block;
-  width: 320px;
-  height: 460px;
+  width: 100%;
+  height: 400px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   /* @media only screen and (min-width: 0px) and (max-width: 370px) {
@@ -87,10 +103,13 @@ const TextArea = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 60px;
+  height: 90px;
   width: 100%;
   font-family: "Secular One", sans-serif;
   /* border: 1.5px black solid; */
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 40px;
+  } */
 `;
 
 
@@ -104,6 +123,9 @@ const Footer = styled.div`
   border-top: 1.5px rebeccapurple dashed;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 60px;
+  } */
 `;
 
 const Button = styled.div`
@@ -112,4 +134,5 @@ const Button = styled.div`
 
 const H1 = styled.h1`
  font-family: 'Secular One', sans-serif;
+ font-size:55px;
 `;

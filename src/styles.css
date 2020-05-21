@@ -1,40 +1,16 @@
 .App {
-  font-family: sans-serif;
-  text-align: center;
+	font-family: sans-serif;
+	text-align: center;
 }
-/* .clickedDiv{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  width: 70px;
-  margin: 10px;
-  border-radius: 25px;
-  font-family: "Secular One", sans-serif;
-  font-size: 55px;
-  border: double red 4.5px;
-  background-color: turquoise;
-  /* background: ${(props) => props.theme.bg}; */
-  /* cursor: pointer;
-  transition: 100ms;
-  
+
+.clickedDiv {
+	border: double rgb(235, 187, 31) 4.5px;
+	/* background:  url("./div_background.png") no-repeat fixed center; */
+	background-color: turquoise;
 }
-@media only screen and (min-width: 0px) and (max-width: 370px) {
-  .clickedDiv{
-    height: 40px;
-    width: 40px;
-    border-radius: 15px;
-    font-size:30px;
-    flex-basis:15%;
-  }
-  
+
+.NotClickedDiv {
+	border: double rebeccapurple 4.5px;
+	/* background:  url("./div_background.png") no-repeat fixed center; */
+	background-color: turquoise;
 }
-:hover {
-    box-shadow: 10px 10px 10px rgba(76, 129, 172, 0.836);
-    transform: scale(1.05);
-  }
-  :active {
-    transform: scale(0.9);
-  }
-   */

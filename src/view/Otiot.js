@@ -29,7 +29,6 @@ const Otiot = () => {
   });
   let [level, setLevel] = useState("");
   let [isAnyLetterClicked, setIsAnyLetterClicked] = useState(false);
-  
 
   const rewardChecker = (ot, clicked, setClicked) => {
     setClicked({ ...clicked, [ot.id]: "clicked" });
@@ -95,7 +94,7 @@ const Otiot = () => {
 
   return (
     <Wrapper>
-      <TopBar />
+      {/* <TopBar /> */}
       <Rewards>
         {isAnyLetterClicked === false ? <H1>אנא בחר/י אות</H1> : null}
         {clicked.length >= 8 && clicked.length < 16 ? (
@@ -108,29 +107,28 @@ const Otiot = () => {
           <PopUp content={level} />
         ) : null}
         {clicked.length === 32 ? (
-          <>
+          <React.Fragment>
             <PopUp content={level} />
             <ConfettiShow />
-          </>
+          </React.Fragment>
         ) : null}
       </Rewards>
 
       <ContentBox>
         <Window content={object} />
-        <div>{clicked.length}/32</div>
         <CharsWrapper>
           <LettersBox>
             {newList.map((obj) => (
               // <ThemeProvider theme={theme}>
-              <Div //className={obj.isClicked ? "clickedDiv": ""}
+              <Div
+                className={obj.isClicked ? "clickedDiv" : "NotClickedDiv"}
                 key={obj.id}
                 onClick={() => {
                   setObject(obj);
                   rewardChecker(object, clicked, setClicked);
                   levelChecker(clicked, setLevel);
                   setIsAnyLetterClicked(true);
-                  // obj =  {...obj, isClicked:"clicked"}
-                  // console.log(obj)
+                  if (!obj.isClicked) obj.isClicked = !obj.isClicked;
                 }}
               >
                 <h3>{obj.letter}</h3>
@@ -168,7 +166,7 @@ const Otiot = () => {
           </ArrowsBox>
         </CharsWrapper>
       </ContentBox>
-      <Footer />
+      {/* <Footer /> */}
     </Wrapper>
   );
 };
@@ -179,7 +177,8 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: start;
   flex-wrap: wrap;
-  background-color: lightslategrey;
+  /* background-color: lightslategrey; */
+  background: lightblue url("https://i.pinimg.com/originals/27/c3/41/27c341ea8d860408d0c6348930c55b5b.jpg") no-repeat fixed center;
   height: 100vh;
   width: 100vw;
   padding: 0;
@@ -191,15 +190,14 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70px;
-  width: 70px;
+  height: 90px;
+  width: 90px;
   margin: 10px;
   border-radius: 25px;
   font-family: "Secular One", sans-serif;
   font-size: 55px;
-  border: double rebeccapurple 4.5px;
-  background-color: turquoise;
   /* background: ${(props) => props.theme.bg}; */
+  /* background: lightblue url("images/div_background.png") no-repeat fixed center; */
   cursor: pointer;
   transition: 100ms;
   &:hover {
@@ -239,7 +237,7 @@ const H1 = styled.h1`
 const ContentBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 80vw;
   margin-right: 10vw;
@@ -258,14 +256,14 @@ const CharsWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 490px;
-  width: 320px;
+  height: 620px;
+  width: 420px;
   /* padding-top: 20px; */
-  margin-left: 25px;
-  border: 4.5px rebeccapurple double;
+  margin-left: 45px;
+  /* border: 4.5px rebeccapurple double; */
   border-radius: 25px;
-  background-color: burlywood;
-  box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47);
+  /* background-color: burlywood; */
+  /* box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47); */
   /* @media only screen and (min-width: 0px) and (max-width: 370px) {
     width: 350px;
     height:220px;
@@ -277,8 +275,8 @@ const LettersBox = styled.div`
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: center;
-  height: 410px;
-  width: 320px;
+  height: 490px;
+  width: 100%;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
 `;
@@ -288,14 +286,13 @@ const ArrowsBox = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 80px;
-  height: 80px;
+  height: 130px;
   width: 100%;
-  border-top: 1.5px rebeccapurple dashed;
+  /* border-top: 1.5px rebeccapurple dashed; */
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
 `;
 
 const Button = styled.div`
-  ${buttonA}
+  ${buttonA};
 `;

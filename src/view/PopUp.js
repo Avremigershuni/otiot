@@ -40,6 +40,10 @@ const PopUpWindow = styled.div`
   top: 240px;
   z-index: 999;
   box-shadow: 4px 1px 7px -3px rgba(0, 0, 0, 0.47);
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    width: 250px;
+    height:250px;
+  } */
 `;
 
 const TextArea = styled.div`
@@ -50,14 +54,24 @@ const TextArea = styled.div`
   width: 100%;
   height: 310px;
   font-family: "Secular One", sans-serif;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height:210px;
+    width: 60%;
+  }
 `;
 
 const H1 = styled.h1`
   font-size: 45px;
   text-shadow: 2px 2px 5px grey;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+ font-size:25px;
+  }
 `;
 
 const Par = styled.p`
   font-size: 25px;
   text-shadow: 2px 2px 5px grey;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+ font-size:20 px;
+  }
 `;
