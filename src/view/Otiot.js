@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { TiArrowLeftOutline, TiArrowRightOutline } from "react-icons/ti";
+import {
+  TiArrowLeftOutline,
+  TiArrowRightOutline,
+  TiInfoLarge,
+} from "react-icons/ti";
+// import { BsInfoCircle} from "react-icons/bs";
 // import {BrowserView, MobileView,isBrowser, isMobile} from "react-device-detect";
+
 import backCards from "../data/backList";
 import Window from "./Window";
 import TopBar from "./TopBar";
@@ -9,6 +15,8 @@ import PopUp from "./PopUp";
 import ConfettiShow from "./Confetti";
 import Footer from "./Footer";
 import { buttonA } from "./globalCss";
+import Player from "./SoundPlayer";
+import About from "./About";
 
 const Otiot = () => {
   let [object, setObject] = useState({});
@@ -29,6 +37,7 @@ const Otiot = () => {
   });
   let [level, setLevel] = useState("");
   let [isAnyLetterClicked, setIsAnyLetterClicked] = useState(false);
+  let [isAboutButtonClicked, setIsAboutButtonClicked] = useState(false);
 
   const rewardChecker = (ot, clicked, setClicked) => {
     setClicked({ ...clicked, [ot.id]: "clicked" });
@@ -95,8 +104,17 @@ const Otiot = () => {
   return (
     <Wrapper>
       {/* <TopBar /> */}
+      <AboutButton
+        onClick={() => {
+          setIsAboutButtonClicked(!isAboutButtonClicked);
+        }}
+      >
+        <TiInfoLarge />
+      </AboutButton>
       <Rewards>
-        {isAnyLetterClicked === false ? <H1>אנא בחר/י אות</H1> : null}
+        {isAnyLetterClicked === false ? <H1 style={{position:"absolute",
+      top: "60px", right:"530px",fontSize:"50px", color:"saddlebrown"}}>אנא בחר/י אות</H1> : null}
+        {isAboutButtonClicked === true ? <About /> : null}
         {clicked.length >= 8 && clicked.length < 16 ? (
           <PopUp content={level} />
         ) : null}
@@ -104,7 +122,7 @@ const Otiot = () => {
           <PopUp content={level} />
         ) : null}
         {clicked.length >= 24 && clicked.length < 32 ? (
-          <PopUp content={level} />
+          <PopUp content={level} /> 
         ) : null}
         {clicked.length === 32 ? (
           <React.Fragment>
@@ -150,6 +168,7 @@ const Otiot = () => {
             >
               <TiArrowLeftOutline />
             </Button>
+            <Player url={object.audio} />
             <Button
               onClick={() => {
                 newListEditor(
@@ -166,6 +185,7 @@ const Otiot = () => {
           </ArrowsBox>
         </CharsWrapper>
       </ContentBox>
+
       {/* <Footer /> */}
     </Wrapper>
   );
@@ -178,7 +198,9 @@ const Wrapper = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   /* background-color: lightslategrey; */
-  background: lightblue url("https://i.pinimg.com/originals/27/c3/41/27c341ea8d860408d0c6348930c55b5b.jpg") no-repeat fixed center;
+  background: lightblue
+    url("https://i.pinimg.com/originals/27/c3/41/27c341ea8d860408d0c6348930c55b5b.jpg")
+    no-repeat fixed center;
   height: 100vh;
   width: 100vw;
   padding: 0;
@@ -190,14 +212,12 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90px;
-  width: 90px;
+  height: 110px;
+  width: 110px;
   margin: 10px;
   border-radius: 25px;
   font-family: "Secular One", sans-serif;
   font-size: 55px;
-  /* background: ${(props) => props.theme.bg}; */
-  /* background: lightblue url("images/div_background.png") no-repeat fixed center; */
   cursor: pointer;
   transition: 100ms;
   &:hover {
@@ -295,4 +315,26 @@ const ArrowsBox = styled.div`
 
 const Button = styled.div`
   ${buttonA};
+`;
+
+const AboutButton = styled.div`
+ display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 55px;
+  color: white;
+  height: 70px;
+  width:70px;
+  border:  saddlebrown 4px solid;
+  background-color:#CCFF66;
+  border-radius:50%;
+  color: saddlebrown;
+  position: absolute;
+  top:20px;
+  right:20px;
+  z-index:10;
+  &:active{
+    transform:scale(0.9);
+  }
 `;

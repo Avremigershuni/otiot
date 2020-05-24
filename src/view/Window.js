@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 // import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { AiOutlinePicture } from "react-icons/ai";
-import Player from "./SoundPlayer";
+
 import { buttonB } from "./globalCss";
 
 const Window = ({ content }) => {
@@ -19,7 +19,7 @@ const Window = ({ content }) => {
         )}
       </CardCenter>
       <TextArea>
-        {isSwitchButtonClicked === true ? <H1>{content.picTitle}</H1> : null}
+        {isSwitchButtonClicked === true ? <H1 style={{fontSize:"60px"}}>{content.picTitle}</H1> : null}
       </TextArea>
       <Footer>
         <Button
@@ -27,9 +27,9 @@ const Window = ({ content }) => {
             setSwitchButtonClicked(!isSwitchButtonClicked);
           }}
         >
-         {isSwitchButtonClicked === false ? (<AiOutlinePicture />) : (<H1>א</H1>)} 
+         {isSwitchButtonClicked === false ? (<AiOutlinePicture />) : (<H1 >א</H1>)} 
         </Button>
-        <Player url={content.audio} />
+      
       </Footer>
     </MainCard>
     </Border>
@@ -42,11 +42,11 @@ const Border = styled.div`
   flex-direction: column;
   justify-content:center;
   align-items:center;
-  border:2.5px dashed white;
+  border:2.5px dashed saddlebrown;
   padding:20px;
   border-radius:45px;
   margin-right:45px;
-  transform:skew(-5deg);
+  transform:skew(-1.5deg);
 `;
 
 const MainCard = styled.div`
@@ -59,7 +59,8 @@ const MainCard = styled.div`
   width: 420px;
   /* border: 4.5px rebeccapurple double; */
   border-radius: 40px;
-  background-color: white;
+  background-color: #CCFF66;
+  padding:0;
   /* transform:skew(-0.7deg); */
   box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47);
   /* @media only screen and (min-width: 0px) and (max-width: 370px) {
@@ -115,12 +116,12 @@ const TextArea = styled.div`
 
 const Footer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 120px;
   width: 100%;
-  border-top: 1.5px rebeccapurple dashed;
+  /* border-top: 1.5px rebeccapurple dashed; */
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   /* @media only screen and (min-width: 0px) and (max-width: 370px) {
@@ -134,5 +135,5 @@ const Button = styled.div`
 
 const H1 = styled.h1`
  font-family: 'Secular One', sans-serif;
- font-size:55px;
+ /* font-size:55px; */
 `;
