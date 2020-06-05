@@ -65,7 +65,7 @@ const About = () => {
           <H4>Developed by Avremi Gershuni</H4>
           <H4>© All Rights Reserved</H4>
         </TextArea>
-        <Links>
+        <LinksBox>
           <A href="mailto:Amgershuni@gmail.com">
             <MdMail />
           </A>
@@ -75,7 +75,7 @@ const About = () => {
           >
             <AiOutlineLinkedin />
           </A>
-        </Links>
+        </LinksBox>
       </Footer>
     </Wrapper>
   );
@@ -87,7 +87,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 700px;
+  height: 680px;
   width: 850px;
   /* padding-right: 25px;
   padding-left: 15px; */
@@ -97,9 +97,14 @@ const Wrapper = styled.div`
   /* border: red 2px solid; */
   /* overflow:scroll; */
   position: absolute;
-  top: 100px;
+  top: 30px;
   z-index: 999;
   box-shadow: 10px 1px 10px -3px rgba(0, 0, 0, 0.47);
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height:180px;
+    width: 200px;
+    top:170px;
+  }
 `;
 
 const H1 = styled.h1`
@@ -110,6 +115,9 @@ const H1 = styled.h1`
   font-family: "Secular One", sans-serif;
   color: saddlebrown;
   margin-bottom: 15px;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    display:none;
+  }
 `;
 
 const Line = styled.div`
@@ -123,6 +131,9 @@ const Line = styled.div`
   padding-left: 25px;
   text-align: right;
   margin-bottom: 12px;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    display:none;
+  }
 `;
 
 const Icon = styled.div`
@@ -133,6 +144,9 @@ const Icon = styled.div`
   flex-basis: 10%;
   font-size: 30px;
   /* border: 2px solid black; */
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    display:none;
+  }
 `;
 
 const P = styled.div`
@@ -144,6 +158,9 @@ const P = styled.div`
   font-size: 23px;
   font-family: "Secular One", sans-serif;
   color: saddlebrown;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    display:none;
+  }
 `;
 
 const Footer = styled.div`
@@ -157,9 +174,17 @@ const Footer = styled.div`
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   background: saddlebrown;
-  /* background: rgb(26, 34, 44); */
   position: absolute;
+  /* border: 2px black solid; */
   bottom: 0;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    height: 160px;
+    top:60px;
+    background-color:#a2e255;
+  }
 `;
 
 const TextArea = styled.div`
@@ -173,6 +198,9 @@ const TextArea = styled.div`
   color: white;
   /* border:2px black solid; */
   /* margin-left:15%; */
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height: 70px;
+  }
 `;
 
 const H4 = styled.h4`
@@ -181,9 +209,13 @@ const H4 = styled.h4`
   color: greenyellow;
   /* color:#555; */
   margin-left: 50px;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    color:saddlebrown;
+    margin-left:0;
+  }
 `;
 
-const Links = styled.div`
+const LinksBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -196,4 +228,7 @@ const A = styled.a`
   font-size: 25px;
   color: greenyellow;
   margin: 5px;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    color:saddlebrown;
+  }
 `;

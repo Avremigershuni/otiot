@@ -5,15 +5,11 @@ import {
   TiArrowRightOutline,
   TiInfoLarge,
 } from "react-icons/ti";
-// import { BsInfoCircle} from "react-icons/bs";
-// import {BrowserView, MobileView,isBrowser, isMobile} from "react-device-detect";
 
 import backCards from "../data/backList";
 import Window from "./Window";
-import TopBar from "./TopBar";
 import PopUp from "./PopUp";
 import ConfettiShow from "./Confetti";
-import Footer from "./Footer";
 import { buttonA } from "./globalCss";
 import Player from "./SoundPlayer";
 import About from "./About";
@@ -72,11 +68,6 @@ const Otiot = () => {
     if (index.max === arr.length && arg === "plus") return;
 
     if (arg === "plus") {
-      // if (
-      //   clicked.length === 8 ||
-      //   clicked.length === 16 ||
-      //   clicked.length === 24
-      // ) {
       setIndex({
         min: (min += 8),
         max: (max += 8),
@@ -103,7 +94,6 @@ const Otiot = () => {
 
   return (
     <Wrapper>
-      {/* <TopBar /> */}
       <AboutButton
         onClick={() => {
           setIsAboutButtonClicked(!isAboutButtonClicked);
@@ -112,8 +102,19 @@ const Otiot = () => {
         <TiInfoLarge />
       </AboutButton>
       <Rewards>
-        {isAnyLetterClicked === false ? <H1 style={{position:"absolute",
-      top: "60px", right:"530px",fontSize:"50px", color:"saddlebrown"}}>אנא בחר/י אות</H1> : null}
+        {isAnyLetterClicked === false ? (
+          <H1
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "530px",
+              fontSize: "50px",
+              color: "saddlebrown",
+            }}
+          >
+            אנא בחר/י אות
+          </H1>
+        ) : null}
         {isAboutButtonClicked === true ? <About /> : null}
         {clicked.length >= 8 && clicked.length < 16 ? (
           <PopUp content={level} />
@@ -122,7 +123,7 @@ const Otiot = () => {
           <PopUp content={level} />
         ) : null}
         {clicked.length >= 24 && clicked.length < 32 ? (
-          <PopUp content={level} /> 
+          <PopUp content={level} />
         ) : null}
         {clicked.length === 32 ? (
           <React.Fragment>
@@ -137,9 +138,15 @@ const Otiot = () => {
         <CharsWrapper>
           <LettersBox>
             {newList.map((obj) => (
-              // <ThemeProvider theme={theme}>
               <Div
-                className={obj.isClicked ? "clickedDiv" : "NotClickedDiv"}
+                className={
+                  object.id === obj.id && obj.isClicked
+                    ? "currentDiv"
+                    : obj.isClicked
+                    ? "clickedDiv"
+                    : "NotClickedDiv"
+                }
+                // {object.id === obj.id ? "123" : "clickedDiv"}
                 key={obj.id}
                 onClick={() => {
                   setObject(obj);
@@ -147,15 +154,18 @@ const Otiot = () => {
                   levelChecker(clicked, setLevel);
                   setIsAnyLetterClicked(true);
                   if (!obj.isClicked) obj.isClicked = !obj.isClicked;
+                  // console.log(obj)
                 }}
               >
                 <h3>{obj.letter}</h3>
               </Div>
-              // </ThemeProvider>
             ))}
           </LettersBox>
           <ArrowsBox>
             <Button
+              className={
+                newList[0].id === 24 ? "notActiveButton" : "activeButton"
+              }
               onClick={() => {
                 newListEditor(
                   backCards,
@@ -170,6 +180,9 @@ const Otiot = () => {
             </Button>
             <Player url={object.audio} />
             <Button
+              className={
+                newList[0].id === 0 ? "notActiveButton" : "activeButton"
+              }
               onClick={() => {
                 newListEditor(
                   backCards,
@@ -185,8 +198,6 @@ const Otiot = () => {
           </ArrowsBox>
         </CharsWrapper>
       </ContentBox>
-
-      {/* <Footer /> */}
     </Wrapper>
   );
 };
@@ -197,14 +208,23 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: start;
   flex-wrap: wrap;
-  /* background-color: lightslategrey; */
   background: lightblue
     url("https://i.pinimg.com/originals/27/c3/41/27c341ea8d860408d0c6348930c55b5b.jpg")
     no-repeat fixed center;
+  background-size: cover;
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    align-items: center;
+    background: lightblue
+      url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/dc3b2546601081.585ad762e70eb.jpg")
+      no-repeat fixed center;
+  }
+  /* @media only screen and (min-width: 371px) and (max-width: 799px) {
+    background-size: cover;
+  } */
 `;
 
 const Div = styled.div`
@@ -227,12 +247,19 @@ const Div = styled.div`
   &:active {
     transform: scale(0.9);
   }
-  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
-    height:  40px;
-    width: 40px;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height: 45px;
+    width: 45px;
     border-radius: 15px;
-    font-size:30px;
-    flex-basis:15%;
+    font-size: 30px;
+    flex-basis: 15%;
+  }
+  /* @media only screen and (min-width: 371px) and (max-width: 799px) {
+    height: 60px;
+    width: 60px;
+    border-radius: 15px;
+    font-size: 40px;
+    flex-basis: 20%;
   } */
 `;
 
@@ -244,6 +271,9 @@ const Rewards = styled.div`
   width: 100vw;
   height: 1px;
   margin-top: 10px;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    margin-top:0;
+  }
 `;
 
 const H1 = styled.h1`
@@ -262,13 +292,16 @@ const ContentBox = styled.div`
   width: 80vw;
   margin-right: 10vw;
   margin-left: 10vw;
-  margin-bottom: 90px;
   /* border: 2px solid black; */
   box-sizing: border-box;
-  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
-    flex-direction: column;
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    flex-direction: column-reverse;
     width: 350px;
-  } */
+    padding: 0;
+    /* margin-top: 50px; */
+    margin-right: 0;
+    margin-left: 0;
+  }
 `;
 
 const CharsWrapper = styled.div`
@@ -276,17 +309,23 @@ const CharsWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 620px;
+  height: 590px;
   width: 420px;
-  /* padding-top: 20px; */
   margin-left: 45px;
   /* border: 4.5px rebeccapurple double; */
   border-radius: 25px;
   /* background-color: burlywood; */
   /* box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47); */
-  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
     width: 350px;
-    height:220px;
+    height: 220px;
+    margin: 0;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+  /* @media only screen and (min-width: 371px) and (max-width: 799px) {
+    height: 500px;
+    width: 350px;
   } */
 `;
 
@@ -295,7 +334,7 @@ const LettersBox = styled.div`
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: center;
-  height: 490px;
+  height: 470px;
   width: 100%;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
@@ -306,7 +345,7 @@ const ArrowsBox = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 130px;
+  height: 120px;
   width: 100%;
   /* border-top: 1.5px rebeccapurple dashed; */
   border-bottom-right-radius: 25px;
@@ -318,23 +357,37 @@ const Button = styled.div`
 `;
 
 const AboutButton = styled.div`
- display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   font-size: 55px;
   color: white;
   height: 70px;
-  width:70px;
-  border:  saddlebrown 4px solid;
-  background-color:#CCFF66;
-  border-radius:50%;
+  width: 70px;
+  border: saddlebrown 4px solid;
+  background-color: #ccff66;
+  border-radius: 50%;
   color: saddlebrown;
   position: absolute;
-  top:20px;
-  right:20px;
-  z-index:10;
-  &:active{
-    transform:scale(0.9);
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  &:active {
+    transform: scale(0.9);
   }
+  @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
+  }
+  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
+    height: 50px;
+    width: 60px;
+    font-size: 30px;
+    top: 20px;
+    right: 20px;
+  } */
 `;
