@@ -216,7 +216,7 @@ const Wrapper = styled.div`
   width: 100vw;
   padding: 0;
   margin: 0;
-  @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 400px) {
     align-items: center;
     background: lightblue
       url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/dc3b2546601081.585ad762e70eb.jpg")
@@ -247,7 +247,7 @@ const Div = styled.div`
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 400px) {
     height: 45px;
     width: 45px;
     border-radius: 15px;
@@ -271,7 +271,7 @@ const Rewards = styled.div`
   width: 100vw;
   height: 1px;
   margin-top: 10px;
-  @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 400px) {
     margin-top:0;
   }
 `;
@@ -294,7 +294,7 @@ const ContentBox = styled.div`
   margin-left: 10vw;
   /* border: 2px solid black; */
   box-sizing: border-box;
-  @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 400px) {
     flex-direction: column-reverse;
     width: 350px;
     padding: 0;
@@ -316,7 +316,7 @@ const CharsWrapper = styled.div`
   border-radius: 25px;
   /* background-color: burlywood; */
   /* box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47); */
-  @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 400px) {
     width: 350px;
     height: 220px;
     margin: 0;
@@ -376,7 +376,7 @@ const AboutButton = styled.div`
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 370px) {
+  @media only screen and (min-width: 0px) and (max-width: 400px) {
     height: 30px;
     width: 30px;
     font-size: 20px;
