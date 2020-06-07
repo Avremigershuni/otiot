@@ -51,7 +51,7 @@ const Border = styled.div`
   border-radius: 45px;
   margin-right: 45px;
   transform: skew(-1.5deg);
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     margin-right:0;
   }
 `;
@@ -70,7 +70,7 @@ const MainCard = styled.div`
   padding: 0;
   /* transform:skew(-0.7deg); */
   box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47);
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 320px;
     height: 220px;
   }
@@ -91,7 +91,7 @@ const CardCenter = styled.div`
   /* border-bottom: 1.5px blue solid; */
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 320px;
     height: 140px;
     font-size: 85px;
@@ -105,7 +105,7 @@ const CardCenter = styled.div`
 const MainLetter = styled.h1`
   font-family: "Secular One", sans-serif;
   font-size: 200px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     font-size: 75px;
   }
 `;
@@ -116,7 +116,7 @@ const Image = styled.img`
   height: 390px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     height: 140px;
   }
   /* @media only screen and (min-width: 371px) and (max-width: 799px) {
@@ -134,7 +134,7 @@ const TextArea = styled.div`
   width: 100%;
   font-family: "Secular One", sans-serif;
   /* border: 1.5px black solid; */
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     height: 35px;
   }
   /* @media only screen and (min-width: 371px) and (max-width: 799px) {
@@ -153,7 +153,7 @@ const Footer = styled.div`
   /* border-top: 1.5px rebeccapurple dashed; */
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     height: 35px;
     padding-bottom: 5px;
   }
@@ -170,7 +170,7 @@ const Button = styled.div`
 const H1 = styled.h1`
   font-family: "Secular One", sans-serif;
   font-size: 60px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     font-size: 30px;
   }
 `;

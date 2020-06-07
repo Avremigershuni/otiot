@@ -15,7 +15,7 @@ transition: 100ms;
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
  width: 35px;
  height:35px;
  font-size:15px;
@@ -39,7 +39,7 @@ transition: 100ms;
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 35px;
     height:35px;
     font-size:15px;

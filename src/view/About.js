@@ -100,7 +100,7 @@ const Wrapper = styled.div`
   top: 30px;
   z-index: 999;
   box-shadow: 10px 1px 10px -3px rgba(0, 0, 0, 0.47);
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     height:180px;
     width: 200px;
     top:170px;
@@ -115,7 +115,7 @@ const H1 = styled.h1`
   font-family: "Secular One", sans-serif;
   color: saddlebrown;
   margin-bottom: 15px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display:none;
   }
 `;
@@ -131,7 +131,7 @@ const Line = styled.div`
   padding-left: 25px;
   text-align: right;
   margin-bottom: 12px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display:none;
   }
 `;
@@ -144,7 +144,7 @@ const Icon = styled.div`
   flex-basis: 10%;
   font-size: 30px;
   /* border: 2px solid black; */
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display:none;
   }
 `;
@@ -158,7 +158,7 @@ const P = styled.div`
   font-size: 23px;
   font-family: "Secular One", sans-serif;
   color: saddlebrown;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display:none;
   }
 `;
@@ -177,7 +177,7 @@ const Footer = styled.div`
   position: absolute;
   /* border: 2px black solid; */
   bottom: 0;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     flex-direction:column;
     justify-content:center;
     align-items: center;
@@ -198,7 +198,7 @@ const TextArea = styled.div`
   color: white;
   /* border:2px black solid; */
   /* margin-left:15%; */
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     height: 70px;
   }
 `;
@@ -209,7 +209,7 @@ const H4 = styled.h4`
   color: greenyellow;
   /* color:#555; */
   margin-left: 50px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     color:saddlebrown;
     margin-left:0;
   }
@@ -228,7 +228,7 @@ const A = styled.a`
   font-size: 25px;
   color: greenyellow;
   margin: 5px;
-  @media only screen and (min-width: 0px) and (max-width: 400px) {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     color:saddlebrown;
   }
 `;
