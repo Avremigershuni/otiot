@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+.body{
+  padding: 0;
+}
+
 .currentDiv {
   border: double saddlebrown 4.5px;
   background-color: #ccff66;
