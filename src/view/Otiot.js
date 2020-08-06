@@ -386,12 +386,15 @@ const AboutButton = styled.div`
 const FirstInstruction = styled.h1`
     position: absolute;
     top: 10px;
-    left:calc(100%/2 + 8.5%);
+    text-align:center;
     font-size: 50px;
     font-family: "Secular One", sans-serif;
     color: saddlebrown; 
-  @media only screen and (min-width: 421px) and (max-width: 1199px) { 
-    text-align:center;
+  @media only screen and (min-width: 0px) and (max-width: 1199px) { 
     font-size:45px;
-  }     
+  }   
+  @media only screen and (min-width: 1200px){ 
+
+    left:calc(100%/2 + 8.5%);
+  } 
 `;
