@@ -103,17 +103,9 @@ const Otiot = () => {
       </AboutButton>
       <Rewards>
         {isAnyLetterClicked === false ? (
-          <H1
-            style={{
-              position: "absolute",
-              top: "20px",
-              right: "530px",
-              fontSize: "50px",
-              color: "saddlebrown",
-            }}
-          >
+          <FirstInstruction>
             אנא בחר/י אות
-          </H1>
+          </FirstInstruction>
         ) : null}
         {isAboutButtonClicked === true ? <About /> : null}
         {clicked.length >= 8 && clicked.length < 16 ? (
@@ -146,7 +138,6 @@ const Otiot = () => {
                     ? "clickedDiv"
                     : "NotClickedDiv"
                 }
-                // {object.id === obj.id ? "123" : "clickedDiv"}
                 key={obj.id}
                 onClick={() => {
                   setObject(obj);
@@ -216,15 +207,16 @@ const Wrapper = styled.div`
   width: 100vw;
   padding: 0;
   margin: 0;
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
     align-items: center;
     background: lightblue
       url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/dc3b2546601081.585ad762e70eb.jpg")
       no-repeat fixed center;
   }
-  /* @media only screen and (min-width: 371px) and (max-width: 799px) {
-    background-size: cover;
-  } */
+  @media only screen and (min-width: 421px) and (max-width: 1199px) {
+    height: 100vh;
+    width: 100vw;
+  }
 `;
 
 const Div = styled.div`
@@ -247,20 +239,20 @@ const Div = styled.div`
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
     height: 45px;
     width: 45px;
     border-radius: 15px;
     font-size: 30px;
     flex-basis: 15%;
   }
-  /* @media only screen and (min-width: 371px) and (max-width: 799px) {
-    height: 60px;
-    width: 60px;
+  @media only screen and (min-width: 421px) and (max-width: 1199px) {
+    height: 70px;
+    width: 70px;
     border-radius: 15px;
-    font-size: 40px;
+    font-size: 25px;
     flex-basis: 20%;
-  } */
+  }
 `;
 
 const Rewards = styled.div`
@@ -268,11 +260,12 @@ const Rewards = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   width: 100vw;
   height: 1px;
   margin-top: 10px;
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
-    margin-top:0;
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
+    margin-top: 0;
   }
 `;
 
@@ -294,7 +287,7 @@ const ContentBox = styled.div`
   margin-left: 10vw;
   /* border: 2px solid black; */
   box-sizing: border-box;
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
     flex-direction: column-reverse;
     width: 90vw;
     padding: 0;
@@ -314,19 +307,17 @@ const CharsWrapper = styled.div`
   margin-left: 45px;
   /* border: 4.5px rebeccapurple double; */
   border-radius: 25px;
-  /* background-color: burlywood; */
-  /* box-shadow: 10px 1px 7px -3px rgba(0, 0, 0, 0.47); */
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
     width: 350px;
     height: 220px;
     margin: 0;
     padding-bottom: 5px;
     margin-bottom: 15px;
   }
-  /* @media only screen and (min-width: 371px) and (max-width: 799px) {
+  @media only screen and (min-width: 421px) and (max-width: 1199px) {
     height: 500px;
-    width: 350px;
-  } */
+    width: 45%;
+  }
 `;
 
 const LettersBox = styled.div`
@@ -376,18 +367,30 @@ const AboutButton = styled.div`
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
     height: 30px;
     width: 30px;
     font-size: 20px;
     top: 10px;
     right: 10px;
   }
-  /* @media only screen and (min-width: 0px) and (max-width: 370px) {
-    height: 50px;
-    width: 60px;
-    font-size: 30px;
+  @media only screen and (min-width: 421px) and (max-width: 1199px) {
+    height:40px;
+    width: 40px;
+    font-size: 25px;
     top: 20px;
     right: 20px;
-  } */
+}
+`;
+
+const FirstInstruction = styled.h1`
+    position: absolute;
+    top: 20px;
+    text-align:center;
+    font-size: 50px;
+    color: saddlebrown; 
+  @media only screen and (min-width: 421px) and (max-width: 1199px) { 
+    top:10px;
+    font-size:45px;
+  }     
 `;

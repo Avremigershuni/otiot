@@ -15,11 +15,17 @@ transition: 100ms;
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
  width: 35px;
  height:35px;
  font-size:15px;
   }
+  @media only screen and (min-width: 421px) and (max-width: 1199px) {
+    width: 45px;
+    height:45px;
+    font-size:18px;
+  }
+
     `;
 
 const buttonB = `
@@ -39,11 +45,16 @@ transition: 100ms;
   &:active {
     transform: scale(0.9);
   }
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
+  @media only screen and (min-width: 0px) and (max-width: 420px) {
     width: 35px;
     height:35px;
     font-size:15px;
      }
+     @media only screen and (min-width: 421px) and (max-width: 1199px) {
+      width: 45px;
+      height:45px;
+      font-size:18px;
+    }
 `;
 export { buttonA, buttonB };
 
